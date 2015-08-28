@@ -5,6 +5,7 @@ var express = require('express'),
 
 
 router.post('/register', function(req, res) {
+  console.log(req.body)
   User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({err: err})
@@ -15,6 +16,7 @@ router.post('/register', function(req, res) {
   });
 });
 
+// how are 'user' and 'info' getting passed in?
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err) }
