@@ -10,3 +10,11 @@ myApp.config(function ($routeProvider) {
     .when('/two', {template: '<h1>This is page two!</h1>'})
     .otherwise({redirectTo: '/'});
 });
+
+myApp.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+    if (AuthService.isLoggedIn() === false) {
+      $location.path('/login');
+    }
+  });
+});

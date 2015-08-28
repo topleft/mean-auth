@@ -3,7 +3,7 @@ angular.module('myApp').controller('loginController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
-    // console.log(AuthService.getUserStatus());
+    console.log(AuthService.getUserStatus());
 
     $scope.login = function () {
 
@@ -62,3 +62,26 @@ angular.module('myApp').controller('registerController',
     };
 
 }]);
+
+angular.module('myApp').controller('logoutController', ['$scope', '$location', 'AuthService',
+  function ($scope, $location, AuthService) {
+
+    $scope.logout = function () {
+
+      console.log(AuthService.getUserStatus());
+
+      // call logout from service
+      AuthService.logout()
+        .then(function () {
+          $location.path('/login');
+        });
+
+    };
+
+  }]);
+
+
+
+
+
+

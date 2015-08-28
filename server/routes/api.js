@@ -5,7 +5,7 @@ var express = require('express'),
 
 
 router.post('/register', function(req, res) {
-  console.log(req.body)
+  console.log(req.body);
   User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({err: err})
